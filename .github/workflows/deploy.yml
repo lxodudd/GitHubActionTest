@@ -61,4 +61,5 @@ jobs:
           secript: |
             cd ~/work-directory
             docker-compose pull
+            docker-compose down
             docker-compose up -d
