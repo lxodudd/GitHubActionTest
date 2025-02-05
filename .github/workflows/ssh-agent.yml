@@ -36,6 +36,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            touch 'hello-world1.txt'
-            touch 'hello-world2.txt'
-            touch 'hello-world3.txt'
+            mkdir work-directory
+            cd work-directory
+            touch 'hello-world.txt'
