@@ -37,7 +37,7 @@ jobs:
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
           echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
           echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> .env
-      
+
       - name: Docker Image Build
         run: docker compose build
 
@@ -69,3 +69,17 @@ jobs:
             docker-compose pull
             docker-compose down
             docker-compose up -d
+
+      - name: End Message - Success
+        uses: sarisia/actions-status-discord@v1
+        if: success()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "🙆‍♂️ 배포 성공"
+
+      - name: End Message - Fail
+        uses: sarisia/actions-status-discord@v1
+        if: failure()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          title: "🙅‍♂️ 배포 실패"
