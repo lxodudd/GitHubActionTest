@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-      stage("Copy Environment Variable File")
+      stage("Copy Environment Variable File") {
         steps {
           script {
             withCredentials([file(credentialsId: 'env-file', variable: 'env_file')]) {
@@ -11,6 +11,7 @@ pipeline {
             }           
           }
         }
+      }
     }
     
     post {
