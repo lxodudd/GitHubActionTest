@@ -2,16 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-	              echo '애플리케이션 빌드'
-            } 
-        }
-        
-        stage('Test'){
-		        steps{
-				        echo '애플리케이션 테스트'
-		        }
+      stage("Copy Environment Variable File")
+        steps {
+          script {
+            withCredentials([file(credentialsId: 'env-file', variable: 'env_file')]) {
+              sh 'cp $env_file .env'
+              sh 'chmod 644 .env'
+            }           
+          }
         }
     }
     
