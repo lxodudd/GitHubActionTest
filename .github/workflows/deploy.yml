@@ -91,6 +91,7 @@ jobs:
             docker-compose -f docker-compose-actions-cache.yml pull
             docker-compose -f docker-compose-actions-cache.yml down
             docker-compose -f docker-compose-actions-cache.yml up -d
+            docker image prune -f
 
       - name: End Message - Success
         uses: sarisia/actions-status-discord@v1
