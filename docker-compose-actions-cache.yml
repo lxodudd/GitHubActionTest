@@ -60,8 +60,12 @@ services:
     image: hamoyee/frontend:latest
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - backend-connect
+    volumes:
+      - /etc/letsencrypt/live/43.202.48.164.sslip.io/privkey.pem:/etc/letsencrypt/live/43.202.48.164.sslip.io/privkey.pem
+      - /etc/letsencrypt/live/43.202.48.164.sslip.io/fullchain.pem:/etc/letsencrypt/live/43.202.48.164.sslip.io/fullchain.pem
     depends_on:
       - backend
       - db
