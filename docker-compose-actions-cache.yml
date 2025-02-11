@@ -58,6 +58,8 @@ services:
       cache_from:
         - type=local,src=/tmp/.buildx-cache/frontend
     image: hamoyee/frontend:latest
+    env_file:
+      - .env
     ports:
       - "80:80"
       - "443:443"
